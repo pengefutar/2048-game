@@ -235,6 +235,13 @@ def checksame():
                 same.append(1)
             if d[m] == d[m-1]:
                 same.append(1)
+
+            if a[m]==b[m]:
+                same.append(1)
+            if b[m]==c[m]:
+                same.append(1)
+            if c[m]==d[m]:
+                same.append(1)
             m -= 1
         mm -= 1
 
