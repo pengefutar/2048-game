@@ -53,9 +53,9 @@ def madeby():
       \033[0;31mUse WASD to shift
       Press N to start a new game
       Press G to give up\x1b[0;0m
-
-      """)
-    print(points)
+      
+      \033[0;33mPoints:\x1b[0;0m \033[1;33m{points}\x1b[0;0m
+      """.format(points=points))
 
 
 def colors():
