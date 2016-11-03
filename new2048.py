@@ -124,7 +124,7 @@ def print_table():
             "|", "{text:>{width}}".format(
             text=n[3], width=4),  "|")
         print("      ", *line, sep='')
-        print()
+    print()
 
 
 def randomize():
