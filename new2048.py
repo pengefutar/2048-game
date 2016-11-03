@@ -2,7 +2,7 @@ import os
 import random
 
 
-j = [[" ", " ", " ", " "], [" ", " ", " ", " "],
+j = [["2", "2", "2", "2"], [" ", " ", " ", " "],
      [" ", " ", " ", " "], [" ", " ", " ", " "]]
 
 
@@ -54,6 +54,25 @@ def shifting_r():
         z += 1
 
 
+def adding_r():
+    """Adding right"""
+
+    z = 0
+
+    while z < 3:
+        x = 0
+        for x in range(4):
+            y = 3
+            while y > 0:
+                if j[x][y] != " " and j[x][y] == j[x][y - 1]:
+                    j[x][y] = int(j[x][y - 1]) + int(j[x][y])
+                    j[x][y] = str(j[x][y])
+                    j[x][y - 1] = " "
+                y -= 1
+            x += 1
+        z += 1
+
+
 def shifting_l():
     """Shifting left"""
 
@@ -72,6 +91,26 @@ def shifting_l():
         z += 1
 
 
+def adding_l():
+    """Adding left"""
+
+    z = 0
+
+    while z < 3:
+        x = 0
+        for x in range(4):
+            y = 0
+            while y < 3:
+                if j[x][y] != " " and j[x][y] == j[x][y + 1]:
+                    j[x][y] = int(j[x][y + 1]) + int(j[x][y])
+                    j[x][y] = str(j[x][y])
+                    j[x][y + 1] = " "
+
+                y += 1
+            x += 1
+        z += 1
+
+
 def shifting_d():
     """Shifting down"""
 
@@ -84,6 +123,25 @@ def shifting_d():
             while x > 0:
                 if j[x][y] == " ":
                     j[x][y] = j[x - 1][y]
+                    j[x - 1][y] = " "
+                x -= 1
+            y += 1
+        z += 1
+
+
+def adding_d():
+    """Adding down"""
+
+    z = 0
+
+    while z < 3:
+        y = 0
+        for y in range(4):
+            x = 3
+            while x > 0:
+                if j[x][y] != " " and j[x][y] == j[x - 1][y]:
+                    j[x][y] = int(j[x - 1][y]) + int(j[x][y])
+                    j[x][y] = str(j[x][y])
                     j[x - 1][y] = " "
                 x -= 1
             y += 1
@@ -108,27 +166,54 @@ def shifting_u():
         z += 1
 
 
+def adding_u():
+    """Adding up"""
+
+    z = 0
+
+    while z < 3:
+        y = 0
+        for y in range(4):
+            x = 0
+            while x < 3:
+                if j[x][y] != " " and j[x][y] == j[x + 1][y]:
+                    j[x][y] = int(j[x + 1][y]) + int(j[x][y])
+                    j[x][y] = str(j[x][y])
+                    j[x + 1][y] = " "
+                x += 1
+            y += 1
+        z += 1
+
+
 randomize()
-#randomize()
+randomize()
 
 print_table()
 print()
 
+shifting_r()
+adding_r()
 shifting_r()
 
 print_table()
 print()
 
 shifting_l()
+adding_l()
+shifting_l()
 
 print_table()
 print()
 
 shifting_d()
+adding_d()
+shifting_d()
 
 print_table()
 print()
 
+shifting_u()
+adding_u()
 shifting_u()
 
 print_table()
