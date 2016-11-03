@@ -25,6 +25,7 @@ j = [["4", "8", "16", "32"],
      ["8", "32", "4", "32"]]
 """
 
+points = 0
 
 k = [[" ", " ", " ", " "],
      [" ", " ", " ", " "],
@@ -54,6 +55,7 @@ def madeby():
       Press G to give up\x1b[0;0m
 
       """)
+    print(points)
 
 
 def colors():
@@ -108,7 +110,6 @@ def print_table():
     os.system('cls' if os.name == 'nt' else 'clear')
     madeby()
     colors()
-
     row_length = 29
     line = "-" * row_length
     print("      ", *line, sep='')
@@ -167,12 +168,15 @@ def shifting_r():
 def adding_r():
     """Adding right"""
 
+    global points
+
     x = 0
     for x in range(4):
         y = 3
         while y > 0:
             if j[x][y] != " " and j[x][y] == j[x][y - 1]:
                 j[x][y] = int(j[x][y - 1]) + int(j[x][y])
+                points = points + j[x][y]
                 j[x][y] = str(j[x][y])
                 j[x][y - 1] = " "
             y -= 1
@@ -200,12 +204,15 @@ def shifting_l():
 def adding_l():
     """Adding left"""
 
+    global points
+
     x = 0
     for x in range(4):
         y = 0
         while y < 3:
             if j[x][y] != " " and j[x][y] == j[x][y + 1]:
                 j[x][y] = int(j[x][y + 1]) + int(j[x][y])
+                points = points + j[x][y]
                 j[x][y] = str(j[x][y])
                 j[x][y + 1] = " "
 
@@ -234,12 +241,15 @@ def shifting_d():
 def adding_d():
     """Adding down"""
 
+    global points
+
     y = 0
     for y in range(4):
         x = 3
         while x > 0:
             if j[x][y] != " " and j[x][y] == j[x - 1][y]:
                 j[x][y] = int(j[x - 1][y]) + int(j[x][y])
+                points = points + j[x][y]
                 j[x][y] = str(j[x][y])
                 j[x - 1][y] = " "
             x -= 1
@@ -267,12 +277,15 @@ def shifting_u():
 def adding_u():
     """Adding up"""
 
+    global points
+
     y = 0
     for y in range(4):
         x = 0
         while x < 3:
             if j[x][y] != " " and j[x][y] == j[x + 1][y]:
                 j[x][y] = int(j[x + 1][y]) + int(j[x][y])
+                points = points + j[x][y]
                 j[x][y] = str(j[x][y])
                 j[x + 1][y] = " "
             x += 1
@@ -390,6 +403,7 @@ while True:
         right()
 
     if (move == "n" or move == "N"):
+        points = 0
         j = [[" ", " ", " ", " "], [" ", " ", " ", " "],
              [" ", " ", " ", " "], [" ", " ", " ", " "]]
         randomize()
