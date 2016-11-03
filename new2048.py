@@ -2,7 +2,7 @@ import os
 import random
 
 
-j = [["2", "2", "2", "2"], [" ", " ", " ", " "],
+j = [[" ", " ", " ", " "], [" ", " ", " ", " "],
      [" ", " ", " ", " "], [" ", " ", " ", " "]]
 
 k = [[" ", " ", " ", " "], [" ", " ", " ", " "],
@@ -12,20 +12,20 @@ k = [[" ", " ", " ", " "], [" ", " ", " ", " "],
 def madeby():
 
     print("""
-      M    M    AA    DDDDD    EEEEEE        BBBBB  YY    YY 
-      MM  MM   A  A   D   DD   EE            BB   B  YY  YY  
-      M MM M  AAAAAA  D    DD  EEEE          BBBBB     YY    
-      M    M  A    A  D   DD   EE            BB   B    YY    
-      M    M  A    A  DDDDD    EEEEEE        BBBBB     YY    
-    
-    
-      \033[0;35mEEEEEE  SSSSSS  ZZZZZZ  TTTTTT  II\x1b[0;0m         AA    N    N  DDDDD     \033[0;34m    TTTTTT   OOOO   M    M   II\x1b[0;0m 
+      M    M    AA    DDDDD    EEEEEE        BBBBB  YY    YY
+      MM  MM   A  A   D   DD   EE            BB   B  YY  YY
+      M MM M  AAAAAA  D    DD  EEEE          BBBBB     YY
+      M    M  A    A  D   DD   EE            BB   B    YY
+      M    M  A    A  DDDDD    EEEEEE        BBBBB     YY
+
+
+      \033[0;35mEEEEEE  SSSSSS  ZZZZZZ  TTTTTT  II\x1b[0;0m         AA    N    N  DDDDD     \033[0;34m    TTTTTT   OOOO   M    M   II\x1b[0;0m
       \033[0;35mEE      SS         ZZ     TT    II\x1b[0;0m        A  A   NN   N  D   DD    \033[0;34m      TT    OO  OO  MM  MM   II\x1b[0;0m
       \033[0;35mEEEE    SSSSSS    ZZ      TT    II\x1b[0;0m       AAAAAA  N N  N  D    DD   \033[0;34m      TT    OO  OO  M MM M   II\x1b[0;0m
       \033[0;35mEE          SS   ZZ       TT    II\x1b[0;0m       A    A  N  N N  D   DD    \033[0;34m      TT    OO  OO  M    M   II\x1b[0;0m
       \033[0;35mEEEEEE  SSSSSS  ZZZZZZ    TT    II\x1b[0;0m       A    A  N   NN  DDDDD     \033[0;34m      TT     OOO0   M    M   II\x1b[0;0m
-    
-    
+
+
       \033[0;31mUse WASD to shift
       Press N to start a new game
       Press G to give up\x1b[0;0m
@@ -39,6 +39,10 @@ def colors():
     while g <= 3:
         f = 3
         while f >= 0:
+
+            if j[g][f] == " ":
+                k[g][f] = "    "
+
             if j[g][f] == "2":
                 k[g][f] = "\033[1;33m{num:>{width}}\x1b[0;0m".format(
                     num="2", width=4)
@@ -78,6 +82,7 @@ def colors():
 
 def print_table():
 
+    os.system('cls' if os.name == 'nt' else 'clear')
     madeby()
     colors()
 
@@ -95,6 +100,7 @@ def print_table():
             "|", "{text:>{width}}".format(
             text=n[3], width=4),  "|")
         print("      ", *line, sep='')
+        print()
 
 
 def randomize():
@@ -271,6 +277,7 @@ def right():
     shifting_r()
     adding_r()
     shifting_r()
+    randomize()
 
 
 def left():
@@ -278,6 +285,7 @@ def left():
     shifting_l()
     adding_l()
     shifting_l()
+    randomize()
 
 
 def down():
@@ -285,6 +293,7 @@ def down():
     shifting_d()
     adding_d()
     shifting_d()
+    randomize()
 
 
 def up():
@@ -292,22 +301,39 @@ def up():
     shifting_u()
     adding_u()
     shifting_u()
+    randomize()
+
 
 randomize()
 randomize()
 
-print_table()
-right()
-print()
 
-print_table()
-left()
-print()
+while True:
 
-print_table()
-down()
-print()
+    print_table()
 
-print_table()
-up()
-print()
+    move = input("  ")
+
+    if (move == "w" or move == "W"):
+        up()
+
+    if (move == "a" or move == "A"):
+        left()
+
+    if (move == "s" or move == "S"):
+        down()
+
+    if (move == "d" or move == "D"):
+        right()
+
+    if (move == "n" or move == "N"):
+        j = [[" ", " ", " ", " "], [" ", " ", " ", " "],
+             [" ", " ", " ", " "], [" ", " ", " ", " "]]
+        randomize()
+        randomize()
+
+    if (move == "g" or move == "G"):
+        print()
+        print("  Byebye! We hope you enjoyed the game! :)")
+        print()
+        exit()
