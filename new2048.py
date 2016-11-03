@@ -2,16 +2,39 @@ import os
 import random
 
 
-j = [[" ", " ", " ", " "], [" ", " ", " ", " "],
-     [" ", " ", " ", " "], [" ", " ", " ", " "]]
+j = [[" ", " ", " ", " "],
+     [" ", " ", " ", " "],
+     [" ", " ", " ", " "],
+     [" ", " ", " ", " "]]
 
-k = [[" ", " ", " ", " "], [" ", " ", " ", " "],
-     [" ", " ", " ", " "], [" ", " ", " ", " "]]
+
+"""Tables for testing winning and losing.
+Win by moving left at the first one, and
+lose by moving up or down at the second one.
+
+
+j = [["1024", "1024", " ", " "],
+     [" ", " ", " ", " "],
+     [" ", " ", " ", " "],
+     [" ", " ", " ", " "]]
+
+
+j = [["4", "8", "16", "32"],
+     ["64", "128", "256", "8"],
+     ["8", "4", "32", "4"],
+     ["8", "32", "4", "32"]]
+"""
+
+
+k = [[" ", " ", " ", " "],
+     [" ", " ", " ", " "],
+     [" ", " ", " ", " "],
+     [" ", " ", " ", " "]]
 
 
 def madeby():
 
-    print("""
+    print("""\033[0;34m
       M    M    AA    DDDDD    EEEEEE        BBBBB  YY    YY
       MM  MM   A  A   D   DD   EE            BB   B  YY  YY
       M MM M  AAAAAA  D    DD  EEEE          BBBBB     YY
@@ -19,11 +42,11 @@ def madeby():
       M    M  A    A  DDDDD    EEEEEE        BBBBB     YY
 
 
-      \033[0;35mEEEEEE  SSSSSS  ZZZZZZ  TTTTTT  II\x1b[0;0m         AA    N    N  DDDDD     \033[0;34m    TTTTTT   OOOO   M    M   II\x1b[0;0m
-      \033[0;35mEE      SS         ZZ     TT    II\x1b[0;0m        A  A   NN   N  D   DD    \033[0;34m      TT    OO  OO  MM  MM   II\x1b[0;0m
-      \033[0;35mEEEE    SSSSSS    ZZ      TT    II\x1b[0;0m       AAAAAA  N N  N  D    DD   \033[0;34m      TT    OO  OO  M MM M   II\x1b[0;0m
-      \033[0;35mEE          SS   ZZ       TT    II\x1b[0;0m       A    A  N  N N  D   DD    \033[0;34m      TT    OO  OO  M    M   II\x1b[0;0m
-      \033[0;35mEEEEEE  SSSSSS  ZZZZZZ    TT    II\x1b[0;0m       A    A  N   NN  DDDDD     \033[0;34m      TT     OOO0   M    M   II\x1b[0;0m
+      EEEEEE  SSSSSS  ZZZZZZ  TTTTTT  II         AA    N    N  DDDDD         TTTTTT   OOOO   M    M   II
+      EE      SS         ZZ     TT    II        A  A   NN   N  D   DD          TT    OO  OO  MM  MM   II
+      EEEE    SSSSSS    ZZ      TT    II       AAAAAA  N N  N  D    DD         TT    OO  OO  M MM M   II
+      EE          SS   ZZ       TT    II       A    A  N  N N  D   DD          TT    OO  OO  M    M   II
+      EEEEEE  SSSSSS  ZZZZZZ    TT    II       A    A  N   NN  DDDDD           TT     OOO0   M    M   II\x1b[0;0m
 
 
       \033[0;31mUse WASD to shift
@@ -322,29 +345,24 @@ def checksame():
         print_table()
 
         print()
-        print("  YOU LOSE, BITCH")
+        print("\033[0;31m      YOU LOSE, BITCH\x1b[0;0m")
         print()
         exit()
 
 
 def give_up():
     print()
-    print("  Byebye! We hope you enjoyed the game! :)")
+    print("\033[1;32m      Byebye! We hope you enjoyed the game! :)\x1b[0;0m")
     print()
     exit()
 
 
 def winner():
-    if (2048 in j[0] or
-        2048 in j[1] or
-        2048 in j[2] or
-            2048 in j[3]):
 
         print_table()
-
         print()
-        print("  CONGRATULATIONS! YOU WON!")
-        print("  YOU'RE AWESOME!! :D")
+        print("\033[1;36m      CONGRATULATIONS! YOU WON!\x1b[0;0m")
+        print("\033[1;36m      YOU'RE AWESOME!! :D\x1b[0;0m")
         print()
         exit()
 
@@ -357,7 +375,7 @@ while True:
 
     print_table()
 
-    move = input("  ")
+    move = input("      ")
 
     if (move == "w" or move == "W"):
         up()
@@ -380,8 +398,14 @@ while True:
     if (move == "g" or move == "G"):
         give_up()
 
-    if (0 not in a and
-        0 not in b and
-        0 not in c and
-            0 not in d):
+    if (" " not in j[0] or
+        " " not in j[1] or
+        " " not in j[2] or
+            " " not in j[3]):
         checksame()
+
+    if ("2048" in j[0] or
+        "2048" in j[1] or
+        "2048" in j[2] or
+            "2048" in j[3]):
+        winner()
