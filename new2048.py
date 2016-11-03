@@ -7,9 +7,13 @@ j = [[" ", " ", " ", " "], [" ", " ", " ", " "],
 
 
 def print_table():
+    x = "|", j[0][0], "|", j[0][1],  "|", j[0][2], "|", j[0][3],  "|"
+    row_length = len(x)
+    line = "-" * row_length
+    print(*line)
     for n in j:
-            print(n)
-            print()
+        print("|", n[0], "|", n[1],  "|", n[2], "|", n[3],  "|")
+        print(*line)
 
 
 def randomize():
@@ -27,7 +31,7 @@ def randomize():
 
     if list_of_zeros != []:
         rand1 = (random.randint(0, len(list_of_zeros) - 1))
-        j[list_of_zeros[rand1][0]][list_of_zeros[rand1][1]] = 2
+        j[list_of_zeros[rand1][0]][list_of_zeros[rand1][1]] = "2"
     else:
         pass
 
@@ -56,4 +60,4 @@ print_table()
 
 shifting_r()
 
-print_table()
+#print_table()
