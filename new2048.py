@@ -53,11 +53,83 @@ def shifting_r():
             x += 1
         z += 1
 
+
+def shifting_l():
+    """Shifting left"""
+
+    z = 0
+
+    while z < 3:
+        x = 0
+        for x in range(4):
+            y = 0
+            while y < 3:
+                if j[x][y] == " ":
+                    j[x][y] = j[x][y + 1]
+                    j[x][y + 1] = " "
+                y += 1
+            x += 1
+        z += 1
+
+
+def shifting_d():
+    """Shifting down"""
+
+    z = 0
+
+    while z < 3:
+        y = 0
+        for y in range(4):
+            x = 3
+            while x > 0:
+                if j[x][y] == " ":
+                    j[x][y] = j[x - 1][y]
+                    j[x - 1][y] = " "
+                x -= 1
+            y += 1
+        z += 1
+
+
+def shifting_u():
+    """Shifting up"""
+
+    z = 0
+
+    while z < 3:
+        y = 0
+        for y in range(4):
+            x = 0
+            while x < 3:
+                if j[x][y] == " ":
+                    j[x][y] = j[x + 1][y]
+                    j[x + 1][y] = " "
+                x += 1
+            y += 1
+        z += 1
+
+
 randomize()
 #randomize()
 
 print_table()
+print()
 
 shifting_r()
 
-#print_table()
+print_table()
+print()
+
+shifting_l()
+
+print_table()
+print()
+
+shifting_d()
+
+print_table()
+print()
+
+shifting_u()
+
+print_table()
+print()
