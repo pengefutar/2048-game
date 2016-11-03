@@ -6,14 +6,92 @@ j = [["2", "2", "2", "2"], [" ", " ", " ", " "],
      [" ", " ", " ", " "], [" ", " ", " ", " "]]
 
 
+def madeby():
+
+    print("""
+      M    M    AA    DDDDD    EEEEEE        BBBBB  YY    YY 
+      MM  MM   A  A   D   DD   EE            BB   B  YY  YY  
+      M MM M  AAAAAA  D    DD  EEEE          BBBBB     YY    
+      M    M  A    A  D   DD   EE            BB   B    YY    
+      M    M  A    A  DDDDD    EEEEEE        BBBBB     YY    
+    
+    
+      \033[0;35mEEEEEE  SSSSSS  ZZZZZZ  TTTTTT  II\x1b[0;0m         AA    N    N  DDDDD     \033[0;34m    TTTTTT   OOOO   M    M   II\x1b[0;0m 
+      \033[0;35mEE      SS         ZZ     TT    II\x1b[0;0m        A  A   NN   N  D   DD    \033[0;34m      TT    OO  OO  MM  MM   II\x1b[0;0m
+      \033[0;35mEEEE    SSSSSS    ZZ      TT    II\x1b[0;0m       AAAAAA  N N  N  D    DD   \033[0;34m      TT    OO  OO  M MM M   II\x1b[0;0m
+      \033[0;35mEE          SS   ZZ       TT    II\x1b[0;0m       A    A  N  N N  D   DD    \033[0;34m      TT    OO  OO  M    M   II\x1b[0;0m
+      \033[0;35mEEEEEE  SSSSSS  ZZZZZZ    TT    II\x1b[0;0m       A    A  N   NN  DDDDD     \033[0;34m      TT     OOO0   M    M   II\x1b[0;0m
+    
+    
+      \033[0;31mUse WASD to shift
+      Press N to start a new game
+      Press G to give up\x1b[0;0m
+
+      """)
+
+
+def colors():
+
+    g = 0
+    while g <= 3:
+        f = 3
+        while f >= 0:
+            if j[g][f] == "2":
+                j[g][f] = "\033[1;33m{num:>{width}}\x1b[0;0m".format(
+                    num="2", width=4)
+            if j[g][f] == "4":
+                j[g][f] = "\033[1;38m{num:>{width}}\x1b[0;0m".format(
+                    num="4", width=4)
+            if j[g][f] == "8":
+                j[g][f] = "\033[1;36m{num:>{width}}\x1b[0;0m".format(
+                    num="8", width=4)
+            if j[g][f] == "16":
+                j[g][f] = "\033[1;35m{num:>{width}}\x1b[0;0m".format(
+                    num="16", width=4)
+            if j[g][f] == "32":
+                j[g][f] = "\033[1;32m{num:>{width}}\x1b[0;0m".format(
+                    num="32", width=4)
+            if j[g][f] == "64":
+                j[g][f] = "\033[1;31m{num:>{width}}\x1b[0;0m".format(
+                    num="64", width=4)
+            if j[g][f] == "128":
+                j[g][f] = "\033[1;38m{num:>{width}}\x1b[0;0m".format(
+                    num="128", width=4)
+            if j[g][f] == "256":
+                j[g][f] = "\033[1;36m{num:>{width}}\x1b[0;0m".format(
+                    num="256", width=4)
+            if j[g][f] == "512":
+                j[g][f] = "\033[1;35m{num:>{width}}\x1b[0;0m".format(
+                    num="512", width=4)
+            if j[g][f] == "1024":
+                j[g][f] = "\033[1;32m{num:>{width}}\x1b[0;0m".format(
+                    num="1024", width=4)
+            if j[g][f] == "2048":
+                j[g][f] = "\033[1;31m{num:>{width}}\x1b[0;0m".format(
+                    num="2048", width=4)
+            f -= 1
+        g += 1
+
+
 def print_table():
-    x = "|", j[0][0], "|", j[0][1],  "|", j[0][2], "|", j[0][3],  "|"
-    row_length = len(x)
+
+    madeby()
+    colors()
+
+    row_length = 29
     line = "-" * row_length
-    print(*line)
+    print("      ", *line, sep='')
     for n in j:
-        print("|", n[0], "|", n[1],  "|", n[2], "|", n[3],  "|")
-        print(*line)
+        print("      |      |      |      |      |")
+        print("      |", "{text:>{width}}".format(
+            text=n[0], width=4),
+            "|", "{text:>{width}}".format(
+            text=n[1], width=4),
+            "|", "{text:>{width}}".format(
+            text=n[2], width=4),
+            "|", "{text:>{width}}".format(
+            text=n[3], width=4),  "|")
+        print("      ", *line, sep='')
 
 
 def randomize():
