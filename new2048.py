@@ -412,9 +412,9 @@ while True:
     if (move == "g" or move == "G"):
         give_up()
 
-    if (" " not in j[0] or
-        " " not in j[1] or
-        " " not in j[2] or
+    if (" " not in j[0] and
+        " " not in j[1] and
+        " " not in j[2] and
             " " not in j[3]):
         checksame()
 
