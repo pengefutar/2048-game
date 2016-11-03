@@ -144,20 +144,16 @@ def shifting_r():
 def adding_r():
     """Adding right"""
 
-    z = 0
-
-    while z < 3:
-        x = 0
-        for x in range(4):
-            y = 3
-            while y > 0:
-                if j[x][y] != " " and j[x][y] == j[x][y - 1]:
-                    j[x][y] = int(j[x][y - 1]) + int(j[x][y])
-                    j[x][y] = str(j[x][y])
-                    j[x][y - 1] = " "
-                y -= 1
-            x += 1
-        z += 1
+    x = 0
+    for x in range(4):
+        y = 3
+        while y > 0:
+            if j[x][y] != " " and j[x][y] == j[x][y - 1]:
+                j[x][y] = int(j[x][y - 1]) + int(j[x][y])
+                j[x][y] = str(j[x][y])
+                j[x][y - 1] = " "
+            y -= 1
+        x += 1
 
 
 def shifting_l():
@@ -181,21 +177,17 @@ def shifting_l():
 def adding_l():
     """Adding left"""
 
-    z = 0
+    x = 0
+    for x in range(4):
+        y = 0
+        while y < 3:
+            if j[x][y] != " " and j[x][y] == j[x][y + 1]:
+                j[x][y] = int(j[x][y + 1]) + int(j[x][y])
+                j[x][y] = str(j[x][y])
+                j[x][y + 1] = " "
 
-    while z < 3:
-        x = 0
-        for x in range(4):
-            y = 0
-            while y < 3:
-                if j[x][y] != " " and j[x][y] == j[x][y + 1]:
-                    j[x][y] = int(j[x][y + 1]) + int(j[x][y])
-                    j[x][y] = str(j[x][y])
-                    j[x][y + 1] = " "
-
-                y += 1
-            x += 1
-        z += 1
+            y += 1
+        x += 1
 
 
 def shifting_d():
@@ -219,20 +211,16 @@ def shifting_d():
 def adding_d():
     """Adding down"""
 
-    z = 0
-
-    while z < 3:
-        y = 0
-        for y in range(4):
-            x = 3
-            while x > 0:
-                if j[x][y] != " " and j[x][y] == j[x - 1][y]:
-                    j[x][y] = int(j[x - 1][y]) + int(j[x][y])
-                    j[x][y] = str(j[x][y])
-                    j[x - 1][y] = " "
-                x -= 1
-            y += 1
-        z += 1
+    y = 0
+    for y in range(4):
+        x = 3
+        while x > 0:
+            if j[x][y] != " " and j[x][y] == j[x - 1][y]:
+                j[x][y] = int(j[x - 1][y]) + int(j[x][y])
+                j[x][y] = str(j[x][y])
+                j[x - 1][y] = " "
+            x -= 1
+        y += 1
 
 
 def shifting_u():
@@ -256,20 +244,16 @@ def shifting_u():
 def adding_u():
     """Adding up"""
 
-    z = 0
-
-    while z < 3:
-        y = 0
-        for y in range(4):
-            x = 0
-            while x < 3:
-                if j[x][y] != " " and j[x][y] == j[x + 1][y]:
-                    j[x][y] = int(j[x + 1][y]) + int(j[x][y])
-                    j[x][y] = str(j[x][y])
-                    j[x + 1][y] = " "
-                x += 1
-            y += 1
-        z += 1
+    y = 0
+    for y in range(4):
+        x = 0
+        while x < 3:
+            if j[x][y] != " " and j[x][y] == j[x + 1][y]:
+                j[x][y] = int(j[x + 1][y]) + int(j[x][y])
+                j[x][y] = str(j[x][y])
+                j[x + 1][y] = " "
+            x += 1
+        y += 1
 
 
 def right():
@@ -304,6 +288,76 @@ def up():
     randomize()
 
 
+def checksame():
+    lose = False
+    same = []
+    i = 0
+
+    mm = 3
+    while mm > 0:
+        m = 3
+        while m > 0:
+            if j[0][m] == j[0][m - 1]:
+                same.append(1)
+            if j[1][m] == j[1][m - 1]:
+                same.append(1)
+            if j[2][m] == j[2][m - 1]:
+                same.append(1)
+            if j[3][m] == j[3][m - 1]:
+                same.append(1)
+
+            if j[0][m] == j[1][m]:
+                same.append(1)
+            if j[1][m] == j[2][m]:
+                same.append(1)
+            if j[2][m] == j[3][m]:
+                same.append(1)
+            m -= 1
+        mm -= 1
+
+    if same == []:
+        lose = True
+
+    if lose == True:
+        print_table()
+
+        print()
+        print("  YOU LOSE, BITCH")
+        print()
+        exit()
+
+
+def give_up():
+    print()
+    print("  Byebye! We hope you enjoyed the game! :)")
+    print()
+    exit()
+
+
+def winner():
+    if (2048 in j[0] or
+        2048 in j[1] or
+        2048 in j[2] or
+            2048 in j[3]):
+
+        print_table()
+
+        print()
+        print("  CONGRATULATIONS! YOU WON!")
+        print("  YOU'RE AWESOME!! :D")
+        print()
+        exit()
+
+
+def new_game():
+    j = [[" ", " ", " ", " "], [" ", " ", " ", " "],
+         [" ", " ", " ", " "], [" ", " ", " ", " "]]
+
+    randomize()
+    randomize()
+    print_table()
+
+
 randomize()
 randomize()
 
@@ -327,13 +381,7 @@ while True:
         right()
 
     if (move == "n" or move == "N"):
-        j = [[" ", " ", " ", " "], [" ", " ", " ", " "],
-             [" ", " ", " ", " "], [" ", " ", " ", " "]]
-        randomize()
-        randomize()
+        new_game()
 
     if (move == "g" or move == "G"):
-        print()
-        print("  Byebye! We hope you enjoyed the game! :)")
-        print()
-        exit()
+        give_up()
