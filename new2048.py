@@ -5,6 +5,9 @@ import random
 j = [["2", "2", "2", "2"], [" ", " ", " ", " "],
      [" ", " ", " ", " "], [" ", " ", " ", " "]]
 
+k = [[" ", " ", " ", " "], [" ", " ", " ", " "],
+     [" ", " ", " ", " "], [" ", " ", " ", " "]]
+
 
 def madeby():
 
@@ -37,37 +40,37 @@ def colors():
         f = 3
         while f >= 0:
             if j[g][f] == "2":
-                j[g][f] = "\033[1;33m{num:>{width}}\x1b[0;0m".format(
+                k[g][f] = "\033[1;33m{num:>{width}}\x1b[0;0m".format(
                     num="2", width=4)
             if j[g][f] == "4":
-                j[g][f] = "\033[1;38m{num:>{width}}\x1b[0;0m".format(
+                k[g][f] = "\033[1;38m{num:>{width}}\x1b[0;0m".format(
                     num="4", width=4)
             if j[g][f] == "8":
-                j[g][f] = "\033[1;36m{num:>{width}}\x1b[0;0m".format(
+                k[g][f] = "\033[1;36m{num:>{width}}\x1b[0;0m".format(
                     num="8", width=4)
             if j[g][f] == "16":
-                j[g][f] = "\033[1;35m{num:>{width}}\x1b[0;0m".format(
+                k[g][f] = "\033[1;35m{num:>{width}}\x1b[0;0m".format(
                     num="16", width=4)
             if j[g][f] == "32":
-                j[g][f] = "\033[1;32m{num:>{width}}\x1b[0;0m".format(
+                k[g][f] = "\033[1;32m{num:>{width}}\x1b[0;0m".format(
                     num="32", width=4)
             if j[g][f] == "64":
-                j[g][f] = "\033[1;31m{num:>{width}}\x1b[0;0m".format(
+                k[g][f] = "\033[1;31m{num:>{width}}\x1b[0;0m".format(
                     num="64", width=4)
             if j[g][f] == "128":
-                j[g][f] = "\033[1;38m{num:>{width}}\x1b[0;0m".format(
+                k[g][f] = "\033[1;38m{num:>{width}}\x1b[0;0m".format(
                     num="128", width=4)
             if j[g][f] == "256":
-                j[g][f] = "\033[1;36m{num:>{width}}\x1b[0;0m".format(
+                k[g][f] = "\033[1;36m{num:>{width}}\x1b[0;0m".format(
                     num="256", width=4)
             if j[g][f] == "512":
-                j[g][f] = "\033[1;35m{num:>{width}}\x1b[0;0m".format(
+                k[g][f] = "\033[1;35m{num:>{width}}\x1b[0;0m".format(
                     num="512", width=4)
             if j[g][f] == "1024":
-                j[g][f] = "\033[1;32m{num:>{width}}\x1b[0;0m".format(
+                k[g][f] = "\033[1;32m{num:>{width}}\x1b[0;0m".format(
                     num="1024", width=4)
             if j[g][f] == "2048":
-                j[g][f] = "\033[1;31m{num:>{width}}\x1b[0;0m".format(
+                k[g][f] = "\033[1;31m{num:>{width}}\x1b[0;0m".format(
                     num="2048", width=4)
             f -= 1
         g += 1
@@ -81,7 +84,7 @@ def print_table():
     row_length = 29
     line = "-" * row_length
     print("      ", *line, sep='')
-    for n in j:
+    for n in k:
         print("      |      |      |      |      |")
         print("      |", "{text:>{width}}".format(
             text=n[0], width=4),
