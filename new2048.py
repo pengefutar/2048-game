@@ -345,7 +345,7 @@ def checksame():
         print_table()
 
         print()
-        print("\033[0;31m      YOU LOSE, BITCH\x1b[0;0m")
+        print("\033[1;31m      YOU LOSE, BITCH\x1b[0;0m")
         print()
         exit()
 
