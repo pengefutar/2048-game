@@ -349,15 +349,6 @@ def winner():
         exit()
 
 
-def new_game():
-    j = [[" ", " ", " ", " "], [" ", " ", " ", " "],
-         [" ", " ", " ", " "], [" ", " ", " ", " "]]
-
-    randomize()
-    randomize()
-    print_table()
-
-
 randomize()
 randomize()
 
@@ -381,7 +372,16 @@ while True:
         right()
 
     if (move == "n" or move == "N"):
-        new_game()
+        j = [[" ", " ", " ", " "], [" ", " ", " ", " "],
+             [" ", " ", " ", " "], [" ", " ", " ", " "]]
+        randomize()
+        randomize()
 
     if (move == "g" or move == "G"):
         give_up()
+
+    if (0 not in a and
+        0 not in b and
+        0 not in c and
+            0 not in d):
+        checksame()
