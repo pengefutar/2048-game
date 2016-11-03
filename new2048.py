@@ -266,36 +266,48 @@ def adding_u():
         z += 1
 
 
+def right():
+
+    shifting_r()
+    adding_r()
+    shifting_r()
+
+
+def left():
+
+    shifting_l()
+    adding_l()
+    shifting_l()
+
+
+def down():
+
+    shifting_d()
+    adding_d()
+    shifting_d()
+
+
+def up():
+
+    shifting_u()
+    adding_u()
+    shifting_u()
+
 randomize()
 randomize()
 
 print_table()
+right()
 print()
 
-shifting_r()
-adding_r()
-shifting_r()
-
 print_table()
+left()
 print()
 
-shifting_l()
-adding_l()
-shifting_l()
-
 print_table()
+down()
 print()
 
-shifting_d()
-adding_d()
-shifting_d()
-
 print_table()
-print()
-
-shifting_u()
-adding_u()
-shifting_u()
-
-print_table()
+up()
 print()
