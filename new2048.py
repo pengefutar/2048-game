@@ -411,9 +411,9 @@ def loser():
                 if j[3][m] == j[3][m - 1]:
                     same.append(1)
                 m -= 1
+
             m = 3
             while m >= 0:
-
                 if j[0][m] == j[1][m]:
                     same.append(1)
                 if j[1][m] == j[2][m]:
