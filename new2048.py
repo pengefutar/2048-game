@@ -397,12 +397,11 @@ def loser():
         " " not in j[2] and
             " " not in j[3]):
         same = []
-        i = 0
 
         mm = 3
         while mm > 0:
             m = 3
-            while m >= 0:
+            while m > 0:
                 if j[0][m] == j[0][m - 1]:
                     same.append(1)
                 if j[1][m] == j[1][m - 1]:
@@ -411,6 +410,9 @@ def loser():
                     same.append(1)
                 if j[3][m] == j[3][m - 1]:
                     same.append(1)
+                m -= 1
+            m = 3
+            while m >= 0:
 
                 if j[0][m] == j[1][m]:
                     same.append(1)
