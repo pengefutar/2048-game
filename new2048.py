@@ -1,6 +1,8 @@
 import os
 import random
 
+from copy import deepcopy
+
 
 j = [[" ", " ", " ", " "],
      [" ", " ", " ", " "],
@@ -294,73 +296,86 @@ def adding_u():
 
 def right():
 
+    r = deepcopy(j)
     shifting_r()
     adding_r()
     shifting_r()
-    randomize()
+    if r != j:
+        randomize()
 
 
 def left():
 
+    r = deepcopy(j)
     shifting_l()
     adding_l()
     shifting_l()
-    randomize()
+    if r != j:
+        randomize()
 
 
 def down():
 
+    r = deepcopy(j)
     shifting_d()
     adding_d()
     shifting_d()
-    randomize()
+    if r != j:
+        randomize()
 
 
 def up():
 
+    r = deepcopy(j)
     shifting_u()
     adding_u()
     shifting_u()
-    randomize()
+    if r != j:
+        randomize()
 
 
 def checksame():
-    lose = False
-    same = []
-    i = 0
+    global j
+    if (" " not in j[0] and
+        " " not in j[1] and
+        " " not in j[2] and
+            " " not in j[3]):
+        lose = False
+        same = []
+        i = 0
 
-    mm = 3
-    while mm > 0:
-        m = 3
-        while m > 0:
-            if j[0][m] == j[0][m - 1]:
-                same.append(1)
-            if j[1][m] == j[1][m - 1]:
-                same.append(1)
-            if j[2][m] == j[2][m - 1]:
-                same.append(1)
-            if j[3][m] == j[3][m - 1]:
-                same.append(1)
+        mm = 3
+        while mm > 0:
+            m = 3
+            while m > 0:
+                if j[0][m] == j[0][m - 1]:
+                    same.append(1)
+                if j[1][m] == j[1][m - 1]:
+                    same.append(1)
+                if j[2][m] == j[2][m - 1]:
+                    same.append(1)
+                if j[3][m] == j[3][m - 1]:
+                    same.append(1)
 
-            if j[0][m] == j[1][m]:
-                same.append(1)
-            if j[1][m] == j[2][m]:
-                same.append(1)
-            if j[2][m] == j[3][m]:
-                same.append(1)
-            m -= 1
-        mm -= 1
+                if j[0][m] == j[1][m]:
+                    same.append(1)
+                if j[1][m] == j[2][m]:
+                    same.append(1)
+                if j[2][m] == j[3][m]:
+                    same.append(1)
+                m -= 1
+            mm -= 1
 
-    if same == []:
-        lose = True
+        if same == []:
+            lose = True
 
-    if lose == True:
-        print_table()
+        if lose == True:
+            print_table()
 
-        print()
-        print("\033[1;31m      YOU LOSE, BITCH\x1b[0;0m")
-        print()
-        exit()
+            print()
+            print("\033[1;31m      YOU LOSE, BITCH\x1b[0;0m")
+            print()
+            exit()
 
 
 def give_up():
@@ -380,14 +395,9 @@ def winner():
         exit()
 
 
-randomize()
-randomize()
-
-
-while True:
-
-    print_table()
-
+def user_input():
+    global j
+    global points
     move = input("      ")
 
     if (move == "w" or move == "W"):
@@ -412,11 +422,15 @@ while True:
     if (move == "g" or move == "G"):
         give_up()
 
-    if (" " not in j[0] and
-        " " not in j[1] and
-        " " not in j[2] and
-            " " not in j[3]):
-        checksame()
+
+randomize()
+randomize()
+
+while True:
+
+    print_table()
+    user_input()
+    checksame()
 
     if ("2048" in j[0] or
         "2048" in j[1] or
