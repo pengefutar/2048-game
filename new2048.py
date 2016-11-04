@@ -165,7 +165,7 @@ def randomize():
 
 
 def shifting_r():
-    """Shifting the numbers right"""
+    """Shifting the numbers right by changing positions with the empty places"""
 
     z = 0
 
@@ -183,7 +183,10 @@ def shifting_r():
 
 
 def adding_r():
-    """Adding the same numbers next to each other to right"""
+    """Adding the same numbers next to each other to right.
+    Every time a sum is done, the user gets as many points for it
+    as the value of the added numer is.
+    """
 
     global points
 
@@ -358,6 +361,8 @@ def up():
 
 
 def give_up():
+    """Message when the user gives up"""
+
     print()
     print("\033[1;32m      Byebye! We hope you enjoyed the game! :)\x1b[0;0m")
     print()
@@ -365,6 +370,8 @@ def give_up():
 
 
 def new_game():
+    """Generating a new empty table when the user starts a new game"""
+
     global j
     global points
     points = 0
@@ -375,6 +382,15 @@ def new_game():
 
 
 def loser():
+    """If there is no empty place in the table, the function checks
+    if there is any other move left. An empty list is generated,
+    and if the program finds the same numbers next to each other, 
+    it adds something to the list. If the list stays empty
+    (no same numbers being next to each other), and there are no
+    empty places left either, the game is lost. A message is printed,
+    and the game exits.
+    """
+
     global j
     if (" " not in j[0] and
         " " not in j[1] and
@@ -386,7 +402,7 @@ def loser():
         mm = 3
         while mm > 0:
             m = 3
-            while m > 0:
+            while m >= 0:
                 if j[0][m] == j[0][m - 1]:
                     same.append(1)
                 if j[1][m] == j[1][m - 1]:
@@ -419,6 +435,10 @@ def loser():
 
 
 def winner():
+    """If the function finds any 2048 in the table, the user wins.
+    A message is printed, and the game exits.
+    """
+
     global j
     if ("2048" in j[0] or
         "2048" in j[1] or
@@ -433,6 +453,9 @@ def winner():
 
 
 def user_input():
+    """The function executes the choice the user makes
+    (left, right, up, down, new game, or give up)."""
+
     global j
     global points
     move = input("      ")
@@ -455,6 +478,11 @@ def user_input():
     if (move == "g" or move == "G"):
         give_up()
 
+
+"""The main function generates two 2s to the empty table, and the game starts.
+The table gets updated according to the state of the game, the move of the user 
+is executed, and the conditions for both losing and winning is checked continuously.
+"""
 
 randomize()
 randomize()
