@@ -343,6 +343,7 @@ def give_up():
 
 def new_game():
     global j
+    global points
     points = 0
     j = [[" ", " ", " ", " "], [" ", " ", " ", " "],
          [" ", " ", " ", " "], [" ", " ", " ", " "]]
