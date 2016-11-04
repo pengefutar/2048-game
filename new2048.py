@@ -9,8 +9,8 @@ j = [[" ", " ", " ", " "],
      [" ", " ", " ", " "],
      [" ", " ", " ", " "]]
 
-
-"""Tables for testing winning and losing.
+"""
+Tables for testing winning and losing.
 Win by moving left at the first one, and
 lose by moving up or down at the second one.
 
@@ -334,7 +334,23 @@ def up():
         randomize()
 
 
-def checksame():
+def give_up():
+    print()
+    print("\033[1;32m      Byebye! We hope you enjoyed the game! :)\x1b[0;0m")
+    print()
+    exit()
+
+
+def new_game():
+    global j
+    points = 0
+    j = [[" ", " ", " ", " "], [" ", " ", " ", " "],
+         [" ", " ", " ", " "], [" ", " ", " ", " "]]
+    randomize()
+    randomize()
+
+
+def loser():
     global j
     if (" " not in j[0] and
         " " not in j[1] and
@@ -378,15 +394,12 @@ def checksame():
             exit()
 
 
-def give_up():
-    print()
-    print("\033[1;32m      Byebye! We hope you enjoyed the game! :)\x1b[0;0m")
-    print()
-    exit()
-
-
 def winner():
-
+    global j
+    if ("2048" in j[0] or
+        "2048" in j[1] or
+        "2048" in j[2] or
+            "2048" in j[3]):
         print_table()
         print()
         print("\033[1;36m      CONGRATULATIONS! YOU WON!\x1b[0;0m")
@@ -413,11 +426,7 @@ def user_input():
         right()
 
     if (move == "n" or move == "N"):
-        points = 0
-        j = [[" ", " ", " ", " "], [" ", " ", " ", " "],
-             [" ", " ", " ", " "], [" ", " ", " ", " "]]
-        randomize()
-        randomize()
+        new_game()
 
     if (move == "g" or move == "G"):
         give_up()
@@ -430,10 +439,5 @@ while True:
 
     print_table()
     user_input()
-    checksame()
-
-    if ("2048" in j[0] or
-        "2048" in j[1] or
-        "2048" in j[2] or
-            "2048" in j[3]):
-        winner()
+    loser()
+    winner()
