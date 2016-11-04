@@ -1,9 +1,11 @@
+""" Welcome to Eszti and Tomi's 2048 game! =) """
+
+
 import os
 import random
-
 from copy import deepcopy
 
-
+""" The starter table """
 j = [[" ", " ", " ", " "],
      [" ", " ", " ", " "],
      [" ", " ", " ", " "],
@@ -14,12 +16,10 @@ Tables for testing winning and losing.
 Win by moving left at the first one, and
 lose by moving up or down at the second one.
 
-
 j = [["1024", "1024", " ", " "],
      [" ", " ", " ", " "],
      [" ", " ", " ", " "],
      [" ", " ", " ", " "]]
-
 
 j = [["4", "8", "16", "32"],
      ["64", "128", "256", "8"],
@@ -36,6 +36,7 @@ k = [[" ", " ", " ", " "],
 
 
 def madeby():
+    """ Credits, instructions, and points """
 
     print("""\033[0;34m
       M    M    AA    DDDDD    EEEEEE        BBBBB  YY    YY
@@ -61,6 +62,12 @@ def madeby():
 
 
 def colors():
+    """ K has the same values as J, except the K is colored. 
+    If we colored the original list, the formatted strings couldn't be 
+    turned into integers when the same numbers next to each other are added together.
+    This function is checking the present state of J, and modifies K according to that.
+    Also, the width of the values is always 4 and they are right-aligned.
+    """
 
     g = 0
     while g <= 3:
@@ -108,6 +115,10 @@ def colors():
 
 
 def print_table():
+    """The terminal gets cleared. The credits, instructions, and points show up, 
+    the colored, right-aligned version of the list gets created in K, 
+    and the K is printed in a table format. 
+    """
 
     os.system('cls' if os.name == 'nt' else 'clear')
     madeby()
@@ -130,27 +141,31 @@ def print_table():
 
 
 def randomize():
+    """Twos get created in one of the empty spaces.
+    We collect the coordinates of the empty spaces in a list of tuples,
+    and the function randomly chooses one between them and places a two there.
+    """
 
-    list_of_zeros = []
+    list_of_empty = []
 
     g = 0
     while g <= 3:
         f = 3
         while f >= 0:
             if j[g][f] == " ":
-                list_of_zeros.append((g, f))
+                list_of_empty.append((g, f))
             f -= 1
         g += 1
 
-    if list_of_zeros != []:
-        rand1 = (random.randint(0, len(list_of_zeros) - 1))
-        j[list_of_zeros[rand1][0]][list_of_zeros[rand1][1]] = "2"
+    if list_of_empty != []:
+        rand1 = (random.randint(0, len(list_of_empty) - 1))
+        j[list_of_empty[rand1][0]][list_of_empty[rand1][1]] = "2"
     else:
         pass
 
 
 def shifting_r():
-    """Shifting right"""
+    """Shifting the numbers right"""
 
     z = 0
 
@@ -168,7 +183,7 @@ def shifting_r():
 
 
 def adding_r():
-    """Adding right"""
+    """Adding the same numbers next to each other to right"""
 
     global points
 
@@ -295,6 +310,11 @@ def adding_u():
 
 
 def right():
+    """This function gets called when the user chooses the right direction. 
+    The numbers get shifted, added, and shifted again to the right, 
+    and if there was a change in the list (it gets checked with the deepcopy of j in the r), 
+    a two gets generated in a random empty place.
+    """
 
     r = deepcopy(j)
     shifting_r()
@@ -305,6 +325,7 @@ def right():
 
 
 def left():
+    """Same as previous, but the direction is the left"""
 
     r = deepcopy(j)
     shifting_l()
@@ -315,6 +336,7 @@ def left():
 
 
 def down():
+    """Same as previous, but the direction is down"""
 
     r = deepcopy(j)
     shifting_d()
@@ -325,6 +347,7 @@ def down():
 
 
 def up():
+    """Same as previous, but the direction is up"""
 
     r = deepcopy(j)
     shifting_u()
@@ -357,7 +380,6 @@ def loser():
         " " not in j[1] and
         " " not in j[2] and
             " " not in j[3]):
-        lose = False
         same = []
         i = 0
 
@@ -382,6 +404,7 @@ def loser():
                     same.append(1)
                 m -= 1
             mm -= 1
+            lose = False
 
         if same == []:
             lose = True
